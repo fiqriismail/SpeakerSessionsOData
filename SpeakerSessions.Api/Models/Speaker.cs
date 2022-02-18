@@ -10,6 +10,5 @@ namespace SpeakerSessions.Api.Models
         public string Blog { get; set; }
         public string Email { get; set; }
 
-        public ICollection<Session> Sessions { get; set; }
     }
 }

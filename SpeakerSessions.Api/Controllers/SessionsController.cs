@@ -48,9 +48,28 @@ namespace SpeakerSessions.Api.Controllers
             _context.Sessions.Add(session);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetOneSession", new {id = session.Id}, session);
+            return CreatedAtRoute("GetOneSession", new { id = session.Id }, session);
         }
 
+        [HttpDelete]
+        public IActionResult DeleteSession(int id)
+        {
+            var session = _context.Sessions.Find(id);
 
+            if (session == null) return NotFound();
+
+            _context.Sessions.Remove(session);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+        [HttpPut]
+        public IActionResult PutSession([FromBody] Session session)
+        {
+            _context.Update(session);
+            _context.SaveChanges();
+            return CreatedAtRoute("GetOneSession", new { id = session.Id }, session);
+        }
     }
 }
