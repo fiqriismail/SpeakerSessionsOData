@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SpeakerSessions.Api.Models
+﻿namespace SpeakerSessions.Api.Models
 {
     public class Speaker
     {
