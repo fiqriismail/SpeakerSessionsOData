@@ -4,7 +4,7 @@
     {
         IT,
         Developer,
-        Buisness,
+        Business,
         Educators
     }
 }

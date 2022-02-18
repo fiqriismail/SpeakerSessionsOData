@@ -8,7 +8,7 @@ namespace SpeakerSessions.Api.Models
         public DbSet<Session> Sessions { get; set; }
 
         public SpeakerSessionsDbContext(DbContextOptions<SpeakerSessionsDbContext> options)
-        : base(options) {}
+        : base(options) { }
 
 
     }
