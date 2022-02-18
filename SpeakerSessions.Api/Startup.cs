@@ -28,7 +28,7 @@ namespace SpeakerSessions.Api
             services.AddControllers()
                 .AddOData(opt =>
                 {
-                    opt.AddRouteComponents("odata", GetEdmModel());
+                    opt.AddRouteComponents(GetEdmModel());
                     opt.Count().Filter().Expand().Select().OrderBy().SetMaxTop(5);
                 });
 

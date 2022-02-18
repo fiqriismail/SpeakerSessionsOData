@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
-using Microsoft.AspNetCore.OData.Routing.Controllers;
 using SpeakerSessions.Api.Models;
 using System.Linq;
-using Microsoft.AspNetCore.OData.Formatter;
 
 namespace SpeakerSessions.Api.Controllers
 {
-    public class SessionsController : ODataController
+    [Route("/api/sessions")]
+    [ApiController]
+    public class SessionsController : ControllerBase
     {
         private readonly SpeakerSessionsDbContext _context;
+
 
         public SessionsController(SpeakerSessionsDbContext context)
         {
@@ -35,10 +36,10 @@ namespace SpeakerSessions.Api.Controllers
         }
 
         [EnableQuery]
-        [HttpGet]
-        public IActionResult GetSession(int key)
+        [HttpGet("{id}", Name = "GetOneSession")]
+        public IActionResult GetSession(int id)
         {
-            return Ok(_context.Sessions.Find(key));
+            return Ok(_context.Sessions.Find(id));
         }
 
         [HttpPost]
@@ -47,7 +48,7 @@ namespace SpeakerSessions.Api.Controllers
             _context.Sessions.Add(session);
             _context.SaveChanges();
 
-            return Created(session);
+            return CreatedAtRoute("GetOneSession", new {id = session.Id}, session);
         }
 
 
